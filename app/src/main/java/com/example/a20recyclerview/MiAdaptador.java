@@ -1,5 +1,4 @@
 package com.example.a20recyclerview;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,9 +9,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
-public class MiAdaptador extends RecyclerView.Adapter<MiAdaptador.MyViewHolder> {
+public class MiAdaptador extends RecyclerView.Adapter<MiAdaptador.ViewHolder> {
 
-    private final List<String> nameList;
+    private List<String> nameList;
 
     public MiAdaptador(List<String> nameList) {
         this.nameList = nameList;
@@ -20,31 +19,27 @@ public class MiAdaptador extends RecyclerView.Adapter<MiAdaptador.MyViewHolder> 
 
     @NonNull
     @Override
-    public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-        View view = inflater.inflate(R.layout.elementito, parent, false);
-        return new MyViewHolder(view);
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(android.R.layout.simple_list_item_1, parent, false);
+        return new ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        final String name = nameList.get(position);
-        // setea el texto del TextView en el interior del elemento .xml
+    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+        String name = nameList.get(position);
         holder.textView.setText(name);
     }
 
     @Override
     public int getItemCount() {
-        return nameList != null ? nameList.size() : 0;
+        return nameList.size();
     }
 
-    public static class MyViewHolder extends RecyclerView.ViewHolder {
+    public static class ViewHolder extends RecyclerView.ViewHolder {
         TextView textView;
-
-        public MyViewHolder(@NonNull View itemView) {
+        public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            // el id real en elementito.xml es @+id/tvElemento
-            textView = itemView.findViewById(R.id.tvElemento);
+            textView = itemView.findViewById(android.R.id.text1);
         }
     }
 }
