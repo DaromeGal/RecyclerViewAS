@@ -1,4 +1,5 @@
 package com.example.a20recyclerview;
+import android.annotation.SuppressLint;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,9 +26,17 @@ public class MiAdaptador extends RecyclerView.Adapter<MiAdaptador.ViewHolder> {
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ViewHolder holder, @SuppressLint("RecyclerView") int position) {
         String name = nameList.get(position);
         holder.textView.setText(name);
+        holder.itemView.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                nameList.remove(position);
+                notifyItemRemoved(position);
+                notifyItemRangeChanged(position, nameList.size());
+            }
+        });
     }
 
     @Override

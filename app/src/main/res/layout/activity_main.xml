@@ -13,7 +13,7 @@
         android:id="@+id/textViewTitulo"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="19 Grid and 20 Recycler"
+        android:text="20 Recycler"
         android:textSize="30sp"
         android:padding="16dp"
         android:textColor="@android:color/black"
